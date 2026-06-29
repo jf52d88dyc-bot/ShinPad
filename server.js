@@ -1,9 +1,12 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
 const PORT = 3000;
 
-const API_TOKEN = "302fefab2dd6465b99ffb1f503137287";
+const API_TOKEN = process.env.API_TOKEN;
+
 const LEAGUES = ["PD", "PL", "BL1", "SA", "FL1"];
 
 const PLAYERS = [
