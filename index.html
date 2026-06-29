@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShinPad</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-mark">S</div>
+            <div>
+                <strong>ShinPad</strong>
+                <span>Football OS</span>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="kampe.html">Matches</a>
+            <a href="stillinger.html">Leagues</a>
+            <a href="transfers.html">Transfers</a>
+            <a href="#">Threads</a>
+        </nav>
+
+        <a class="login-btn" href="#">Login</a>
+    </header>
+
+    <main class="home-shell">
+        <section class="premium-hero">
+            <div class="hero-content">
+                <p class="hero-kicker">Built for football fans</p>
+                <h1>Every match.<br>Every player.<br>Every thread.</h1>
+                <p class="hero-text">
+                    Følg kampe, spillere, transfers og fansenes bedste takes samlet ét sted.
+                </p>
+
+                <div class="search-box premium-search">
+                    <input id="teamSearch" type="text" placeholder="Search clubs, players, leagues...">
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="kampe.html">Explore matches</a>
+                    <a href="transfers.html" class="secondary">Transfer centre</a>
+                </div>
+            </div>
+
+            <div class="hero-panel">
+                <div class="live-pill">● LIVE NOW</div>
+                <h3>Barcelona vs Real Madrid</h3>
+                <div class="hero-score">
+                    <span>BAR</span>
+                    <strong>2 - 1</strong>
+                    <span>RMA</span>
+                </div>
+                <p>84' • 18.4k fans watching</p>
+
+                <div class="mini-feed">
+                    <div>
+                        <strong>Top take</strong>
+                        <p>“Yamal is attacking the left side every time.”</p>
+                    </div>
+                    <div>
+                        <strong>Trending</strong>
+                        <p>Transfer rumours, tactical threads and player ratings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section premium-section">
+            <div class="section-title">
+                <div>
+                    <p class="section-kicker">Personal feed</p>
+                    <h2>Your clubs</h2>
+                </div>
+            </div>
+
+            <div id="favoriteTeams" class="favorite-teams">
+                <p class="loading">No followed clubs yet.</p>
+            </div>
+        </section>
+
+        <section class="home-section premium-section">
+            <div class="section-title">
+                <div>
+                    <p class="section-kicker">Live centre</p>
+                    <h2>Aktuelle kampe</h2>
+                </div>
+                <a href="kampe.html">Se alle</a>
+            </div>
+
+            <div id="homeMatches" class="home-matches">
+                <p class="loading">Indlæser kampe...</p>
+            </div>
+        </section>
+
+        <section class="home-grid-two">
+            <section class="home-section premium-section">
+                <div class="section-title">
+                    <div>
+                        <p class="section-kicker">Top leagues</p>
+                        <h2>Ligaer</h2>
+                    </div>
+                    <a href="stillinger.html">Se stillinger</a>
+                </div>
+
+                <div class="league-grid">
+                    <a href="stillinger.html?league=PL" class="league-card">Premier League</a>
+                    <a href="stillinger.html?league=PD" class="league-card">La Liga</a>
+                    <a href="stillinger.html?league=BL1" class="league-card">Bundesliga</a>
+                    <a href="stillinger.html?league=SA" class="league-card">Serie A</a>
+                    <a href="stillinger.html?league=FL1" class="league-card">Ligue 1</a>
+                </div>
+            </section>
+
+            <section class="home-section premium-section">
+                <div class="section-title">
+                    <div>
+                        <p class="section-kicker">Social layer</p>
+                        <h2>Trending threads</h2>
+                    </div>
+                </div>
+
+                <div class="thread">
+                    <h3>Manchester City vs Liverpool</h3>
+                    <p>248 kommentarer • Live diskussion</p>
+                </div>
+
+                <div class="thread">
+                    <h3>PSG vs Bayern München</h3>
+                    <p>183 kommentarer • Starter kl. 21:00</p>
+                </div>
+            </section>
+        </section>
+
+        <section class="home-section premium-section">
+            <div class="section-title">
+                <div>
+                    <p class="section-kicker">Your news</p>
+                    <h2>Latest football stories</h2>
+                </div>
+                <a href="transfers.html">See all news</a>
+            </div>
+
+            <div id="homeNews" class="home-news">
+                <p class="loading">Loading news...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="home.js"></script>
+</body>
+
+</html>

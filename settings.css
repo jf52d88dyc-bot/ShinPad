@@ -1,0 +1,138 @@
+.settings-page {
+    max-width: 1000px;
+    margin: 32px auto 70px;
+    padding: 0 18px;
+}
+
+.settings-hero {
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .22), transparent 35%),
+        linear-gradient(135deg, #0f172a, #020617);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    padding: 42px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+}
+
+.settings-hero p {
+    margin: 0;
+    color: var(--primary-soft);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.settings-hero h1 {
+    margin: 8px 0;
+    font-size: clamp(42px, 6vw, 64px);
+    letter-spacing: -2px;
+}
+
+.settings-hero span {
+    color: var(--muted);
+    font-size: 18px;
+}
+
+.settings-card {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 26px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+}
+
+.settings-card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.settings-card label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.settings-card input,
+.settings-card textarea,
+.settings-card select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .06);
+    color: white;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.settings-card textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.settings-card input:focus,
+.settings-card textarea:focus,
+.settings-card select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+.settings-toggle {
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    margin: 16px 0;
+    cursor: pointer;
+}
+
+.settings-toggle input {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+}
+
+.save-settings-button {
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    padding: 18px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+    transition: .2s;
+}
+
+.save-settings-button:hover {
+    transform: translateY(-2px);
+}
+
+.settings-message {
+    text-align: center;
+    margin-top: 18px;
+    color: var(--primary-soft);
+    font-weight: 900;
+}
+
+@media(max-width:700px) {
+
+    .settings-hero {
+        padding: 28px;
+    }
+
+    .settings-card {
+        padding: 20px;
+    }
+
+    .settings-hero h1 {
+        font-size: 42px;
+    }
+}

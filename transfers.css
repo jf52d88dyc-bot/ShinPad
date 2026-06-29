@@ -1,0 +1,190 @@
+.transfer-page {
+    max-width: 1240px;
+    margin: 32px auto 70px;
+    padding: 0 18px;
+}
+
+.transfer-hero {
+    padding: 46px;
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(59, 130, 246, .22), transparent 35%),
+        linear-gradient(135deg, rgba(15, 23, 42, .92), rgba(2, 6, 23, .92));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+.transfer-label {
+    color: var(--primary-soft);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.transfer-hero h2 {
+    font-size: clamp(42px, 5vw, 64px);
+    margin: 10px 0;
+    letter-spacing: -2px;
+}
+
+.transfer-hero p {
+    color: var(--muted);
+    max-width: 700px;
+    font-size: 18px;
+}
+
+.transfer-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 28px 0;
+}
+
+.filter {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.filter:hover,
+.filter.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+    color: white;
+}
+
+.transfer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.transfer-card {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 26px;
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+    transition: .25s;
+}
+
+.transfer-card:hover {
+    transform: translateY(-6px);
+    background: rgba(59, 130, 246, .10);
+}
+
+.transfer-status {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(59, 130, 246, .15);
+    color: var(--primary-soft);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.transfer-card h3 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.transfer-card p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.hype-bar {
+    margin-top: 24px;
+    height: 12px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .08);
+}
+
+.hype-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #22c55e, #38bdf8);
+}
+
+.hype-text {
+    margin-top: 10px;
+    color: white;
+    font-weight: 800;
+}
+
+.discussion-section {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 28px;
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+}
+
+.discussion-section h2 {
+    margin-top: 0;
+}
+
+.discussion-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 14px;
+    transition: .2s;
+}
+
+.discussion-card:hover {
+    background: rgba(59, 130, 246, .10);
+}
+
+@media (max-width:900px) {
+
+    .transfer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .transfer-hero {
+        padding: 30px;
+    }
+
+}
+
+.news-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.news-tags span {
+    background: rgba(59, 130, 246, .12);
+    color: #7dd3fc;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.news-link-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}

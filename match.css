@@ -1,0 +1,298 @@
+#matchPage {
+    max-width: 1120px;
+    margin: 28px auto 70px;
+    padding: 0 18px;
+}
+
+.match-hero {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, .22), transparent 35%),
+        linear-gradient(135deg, rgba(15, 23, 42, .92), rgba(2, 6, 23, .92));
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 34px;
+    padding: 34px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+}
+
+.match-top-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 34px;
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.match-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 28px;
+}
+
+.match-team {
+    text-align: center;
+}
+
+.match-team img {
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, .95);
+    border-radius: 28px;
+    padding: 18px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .28);
+}
+
+.match-team h2 {
+    margin: 16px 0 6px;
+    font-size: 28px;
+}
+
+.match-team p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.match-score {
+    font-size: 54px;
+    font-weight: 950;
+    background: white;
+    color: #020617;
+    padding: 22px 34px;
+    border-radius: 26px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .28);
+}
+
+.match-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 26px 0;
+}
+
+.match-info-card,
+.match-thread-box {
+    background: rgba(255, 255, 255, .07);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+}
+
+.match-info-card h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: var(--primary-soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.match-info-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.match-thread-box {
+    margin-top: 26px;
+}
+
+.match-thread-box h2 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+.match-placeholder {
+    color: var(--muted);
+}
+
+@media (max-width: 760px) {
+    .match-teams {
+        grid-template-columns: 1fr;
+    }
+
+    .match-score {
+        text-align: center;
+        font-size: 42px;
+    }
+
+    .match-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== MATCH THREAD ===== */
+
+.comment-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 16px;
+    border-radius: 18px;
+    font-size: 15px;
+    outline: none;
+    transition: .2s;
+    box-sizing: border-box;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.comment-form button {
+    width: fit-content;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 15px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+    color: white;
+    transition: .2s;
+}
+
+.comment-form button:hover {
+    transform: translateY(-2px);
+}
+
+.comments-list {
+    display: grid;
+    gap: 18px;
+    margin-top: 32px;
+}
+
+.comment-card {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+    transition: .2s;
+}
+
+.comment-card:hover {
+    background: rgba(59, 130, 246, .08);
+}
+
+.comment-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+}
+
+.comment-top strong {
+    display: block;
+    font-size: 16px;
+    color: white;
+}
+
+.comment-top span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.comment-top button {
+    border: none;
+    background: rgba(59, 130, 246, .15);
+    color: var(--primary-soft);
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.comment-top button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.comment-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.comment-user {
+    display: block;
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.comment-user:hover {
+    color: var(--primary-soft);
+}
+
+.comment-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.comment-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--primary), var(--primary-soft));
+}
+
+.comment-top {
+    position: relative;
+    z-index: 1;
+}
+
+.comment-card p {
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+}
+
+.comment-top button::before {
+    content: "❤ ";
+}
+
+.comment-form {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 18px;
+}
+
+.comment-form button {
+    font-weight: 950;
+}
+
+.comments-list .match-placeholder {
+    padding: 26px;
+    border: 2px dashed var(--border);
+    border-radius: 22px;
+    text-align: center;
+}

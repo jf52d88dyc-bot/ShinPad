@@ -1,0 +1,172 @@
+/* ===== PREMIUM STANDINGS ===== */
+
+.standings-page {
+    max-width: 1240px;
+    margin: 32px auto 70px;
+    padding: 0 18px;
+}
+
+.standings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 32px;
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .22), transparent 35%),
+        linear-gradient(135deg, rgba(15, 23, 42, .92), rgba(2, 6, 23, .92));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    margin-bottom: 24px;
+}
+
+.standings-header h2 {
+    margin: 0;
+    font-size: 42px;
+    color: white;
+    letter-spacing: -2px;
+}
+
+.standings-header p {
+    margin: 8px 0 0;
+    color: var(--muted);
+}
+
+#leagueSelect {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#leagueSelect option {
+    background: #111827;
+}
+
+.standings-info {
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.standings-box {
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .07);
+    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standings-table th {
+    background: rgba(255, 255, 255, .05);
+    color: var(--primary-soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 18px;
+}
+
+.standings-table td {
+    padding: 18px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.standings-table tr {
+    transition: .2s;
+}
+
+.standings-table tr:hover {
+    background: rgba(59, 130, 246, .08);
+}
+
+.team-name {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 800;
+}
+
+.team-name img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.team-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+.team-link:hover span {
+    color: var(--primary-soft);
+}
+
+.ucl td:first-child {
+    border-left: 5px solid #22c55e;
+}
+
+.uel td:first-child {
+    border-left: 5px solid #3b82f6;
+}
+
+.conference td:first-child {
+    border-left: 5px solid #f59e0b;
+}
+
+.relegation td:first-child {
+    border-left: 5px solid #ef4444;
+}
+
+@media(max-width:900px) {
+
+    .standings-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #leagueSelect {
+        width: 100%;
+    }
+
+    .standings-table {
+        font-size: 14px;
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .standings-table th,
+    .standings-table td {
+        padding: 12px;
+    }
+
+    .team-name {
+        gap: 8px;
+    }
+
+    .team-name img {
+        width: 26px;
+        height: 26px;
+    }
+
+}

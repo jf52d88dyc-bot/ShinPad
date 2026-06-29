@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kampdetaljer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>⚽ Match Thread</h1>
+
+    <nav>
+        <a href="index.html">Forside</a>
+        <a href="kampe.html">Kampe</a>
+        <a href="stillinger.html">Stillinger</a>
+        <a href="transfers.html">Transfers</a>
+    </nav>
+
+    <a class="back-button" href="kampe.html">⬅ Tilbage til kampe</a>
+
+    <div class="scoreboard">
+        <h2 id="kampTitel">Kampdetaljer</h2>
+
+        <div class="score">
+            <span id="homeTeam"></span>
+            <strong id="scoreText"></strong>
+            <span id="awayTeam"></span>
+        </div>
+
+        <p id="matchInfo"></p>
+    </div>
+
+    <div class="nyhed">
+        <h2>💬 Match Thread</h2>
+        <p>Her skal fans senere kunne diskutere kampen live.</p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const home = params.get("home") || "Hjemmehold";
+        const away = params.get("away") || "Udehold";
+        const score = params.get("score") || "- - -";
+        const competition = params.get("competition") || "Turnering";
+        const status = params.get("status") || "Status ukendt";
+
+        document.getElementById("kampTitel").innerText = home + " vs " + away;
+        document.getElementById("homeTeam").innerText = home;
+        document.getElementById("awayTeam").innerText = away;
+        document.getElementById("scoreText").innerText = score;
+        document.getElementById("matchInfo").innerText = competition + " • " + status;
+    </script>
+
+</body>
+
+</html>

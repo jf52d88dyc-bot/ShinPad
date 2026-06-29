@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Following | ShinPad</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="following.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-mark">S</div>
+            <div>
+                <strong>ShinPad</strong>
+                <span>Your Football Feed</span>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="kampe.html">Matches</a>
+            <a href="stillinger.html">Leagues</a>
+            <a href="transfers.html">News</a>
+            <a href="following.html">Following</a>
+        </nav>
+    </header>
+
+    <main class="following-page">
+
+        <section class="following-hero">
+            <p>Personalized ShinPad</p>
+
+            <h1>Your Following</h1>
+
+            <span>
+                Everything you follow in one place. Clubs today, players now,
+                and later your personalized football universe.
+            </span>
+        </section>
+
+        <section class="following-section">
+
+            <div class="following-title">
+                <div>
+                    <p class="section-kicker">Football clubs</p>
+                    <h2>Followed Clubs</h2>
+                </div>
+
+                <span id="clubCount">0 clubs</span>
+            </div>
+
+            <div id="favoriteTeams" class="following-grid"></div>
+
+        </section>
+
+        <section class="following-section">
+
+            <div class="following-title">
+                <div>
+                    <p class="section-kicker">Players</p>
+                    <h2>Followed Players</h2>
+                </div>
+
+                <span id="playerCount">0 players</span>
+            </div>
+
+            <div id="favoritePlayers" class="following-grid"></div>
+
+        </section>
+
+    </main>
+
+    <script src="following.js"></script>
+
+</body>
+
+</html>

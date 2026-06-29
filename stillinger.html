@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stillinger - FodboldZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="standings.css">
+</head>
+
+<body>
+
+    <h1>⚽ FodboldZone</h1>
+
+    <hr>
+    <nav>
+        <a href="index.html">Forside</a>
+        <a href="kampe.html">Kampe</a>
+        <a href="stillinger.html">Stillinger</a>
+        <a href="transfers.html">Transfers</a>
+    </nav>
+    <hr>
+
+    <div class="standings-page">
+        <div class="standings-header">
+            <div>
+                <h2>🏆 Stillinger</h2>
+                <p>Se de aktuelle ligatabeller fra de største ligaer.</p>
+            </div>
+
+            <select id="leagueSelect">
+                <option value="PL">Premier League</option>
+                <option value="PD">La Liga</option>
+                <option value="BL1">Bundesliga</option>
+                <option value="SA">Serie A</option>
+                <option value="FL1">Ligue 1</option>
+            </select>
+        </div>
+
+        <div id="standingsInfo" class="standings-info">
+            Indlæser stilling...
+        </div>
+
+        <div id="standingsBox" class="standings-box"></div>
+    </div>
+
+    <script src="stillinger.js"></script>
+</body>
+
+</html>

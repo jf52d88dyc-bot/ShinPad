@@ -1,0 +1,213 @@
+.following-page {
+    max-width: 1200px;
+    margin: 32px auto 70px;
+    padding: 0 18px;
+}
+
+.following-hero {
+    background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .22), transparent 35%),
+        linear-gradient(135deg, #0f172a, #020617);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+}
+
+.following-hero p {
+    color: var(--primary-soft);
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 12px;
+}
+
+.following-hero h1 {
+    margin: 8px 0;
+    font-size: clamp(38px, 5vw, 62px);
+    letter-spacing: -2px;
+}
+
+.following-hero span {
+    color: var(--muted);
+    max-width: 700px;
+    display: block;
+    line-height: 1.7;
+}
+
+.following-section {
+    margin-top: 30px;
+    padding: 26px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+}
+
+.following-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.following-title h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.following-title span {
+    color: var(--primary-soft);
+    font-weight: 900;
+    background: rgba(59, 130, 246, .12);
+    border: 1px solid var(--border);
+    padding: 9px 13px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.following-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.following-card-wrapper {
+    display: grid;
+    gap: 10px;
+}
+
+.following-card {
+    min-height: 104px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    transition: .2s;
+}
+
+.following-card:hover {
+    transform: translateY(-4px);
+    background: rgba(59, 130, 246, .12);
+}
+
+.following-logo-box,
+.following-player-image {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.following-logo-box img,
+.following-player-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.following-player-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.following-logo-box span,
+.following-player-image span {
+    color: #020617;
+    font-weight: 950;
+    font-size: 24px;
+}
+
+.following-card strong {
+    display: block;
+    font-size: 18px;
+}
+
+.following-card p {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+.remove-following-button {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .06);
+    color: var(--muted);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.remove-following-button:hover {
+    background: rgba(239, 68, 68, .12);
+    color: #fecaca;
+    border-color: rgba(239, 68, 68, .35);
+}
+
+.empty-following {
+    grid-column: 1 / -1;
+    padding: 40px;
+    text-align: center;
+    border: 2px dashed var(--border);
+    border-radius: 22px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, .04);
+}
+
+.empty-following h3 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 22px;
+}
+
+.empty-following p {
+    margin: 0 auto 20px;
+    max-width: 520px;
+    line-height: 1.6;
+}
+
+.empty-following a {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+}
+
+@media (max-width: 700px) {
+    .following-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .following-section,
+    .following-hero {
+        padding: 24px;
+    }
+
+    .following-grid {
+        grid-template-columns: 1fr;
+    }
+}

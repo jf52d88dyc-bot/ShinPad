@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | ShinPad</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="index.html">
+            <div class="brand-mark">S</div>
+            <div>
+                <strong>ShinPad</strong>
+                <span>Settings</span>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="kampe.html">Matches</a>
+            <a href="stillinger.html">Leagues</a>
+            <a href="transfers.html">News</a>
+            <a href="following.html">Following</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+
+    <main class="settings-page">
+
+        <section class="settings-hero">
+            <p>Personalize ShinPad</p>
+            <h1>Settings</h1>
+            <span>Control your profile, feed and football preferences.</span>
+        </section>
+
+        <section class="settings-card">
+            <h2>Profile</h2>
+
+            <label>
+                Username
+                <input id="settingUsername" type="text" placeholder="Your username">
+            </label>
+
+            <label>
+                Bio
+                <textarea id="settingBio" rows="4" placeholder="Tell people about your football taste..."></textarea>
+            </label>
+        </section>
+
+        <section class="settings-card">
+            <h2>Football preferences</h2>
+
+            <label>
+                Favorite league
+                <select id="settingLeague">
+                    <option value="all">All leagues</option>
+                    <option value="PD">La Liga</option>
+                    <option value="PL">Premier League</option>
+                    <option value="BL1">Bundesliga</option>
+                    <option value="SA">Serie A</option>
+                    <option value="FL1">Ligue 1</option>
+                </select>
+            </label>
+
+            <label>
+                Feed type
+                <select id="settingFeed">
+                    <option value="all">Show all football news</option>
+                    <option value="following">Only clubs and players I follow</option>
+                    <option value="verified">Only trusted stories</option>
+                </select>
+            </label>
+        </section>
+
+        <section class="settings-card">
+            <h2>Notifications</h2>
+
+            <label class="settings-toggle">
+                <input id="notifyMatches" type="checkbox">
+                <span>Match updates</span>
+            </label>
+
+            <label class="settings-toggle">
+                <input id="notifyTransfers" type="checkbox">
+                <span>Transfer news</span>
+            </label>
+
+            <label class="settings-toggle">
+                <input id="notifyThreads" type="checkbox">
+                <span>Thread activity</span>
+            </label>
+        </section>
+
+        <button id="saveSettingsButton" class="save-settings-button">
+            Save settings
+        </button>
+
+        <p id="settingsMessage" class="settings-message"></p>
+
+    </main>
+
+    <script src="settings.js"></script>
+
+</body>
+
+</html>
