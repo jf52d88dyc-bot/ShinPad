@@ -107,23 +107,6 @@ const players = {
             "Madrid fans praise Mbappé's goalscoring form"
         ]
     }
-};
-
-function safeValue(value, fallback = "Not available") {
-    if (value === null || value === undefined || value === "") {
-        return fallback;
-    }
-
-    return value;
-}
-
-function getFavoritePlayers() {
-    const saved = localStorage.getItem("shinpad_favorite_players");
-    return saved ? JSON.parse(saved) : [];
-}
-
-function saveFavoritePlayers(players) {
-    localStorage.setItem("shinpad_favorite_players", JSON.stringify(players));
 }
 
 function isFavoritePlayer(id) {
@@ -142,33 +125,13 @@ function toggleFavoritePlayer(id, name, club, image) {
     saveFavoritePlayers(favorites);
     hentSpiller();
 }
-function normalizeUsername(username) {
-    return username
-        .toLowerCase()
-        .trim()
-        .replaceAll(" ", "-")
-        .replace(/[^a-z0-9-]/g, "");
-}
-
-function getPlayerThreadKey() {
-    return `shinpad_player_thread_${playerId}`;
-}
-
-function getPlayerPosts() {
-    const saved = localStorage.getItem(getPlayerThreadKey());
-    return saved ? JSON.parse(saved) : [];
-}
-
-function savePlayerPosts(posts) {
-    localStorage.setItem(getPlayerThreadKey(), JSON.stringify(posts));
-}
 
 function renderPlayerPosts() {
     const playerPostsList = document.getElementById("playerPostsList");
 
     if (!playerPostsList) return;
 
-    const posts = getPlayerPosts();
+    const posts = getPlayerPosts(playerId);
 
     if (posts.length === 0) {
         playerPostsList.innerHTML = `
@@ -205,7 +168,7 @@ function likePlayerPost(index) {
     if (!posts[index]) return;
 
     posts[index].likes += 1;
-    savePlayerPosts(posts);
+    savePlayerPosts(playerId, posts);
     renderPlayerPosts();
 }
 
@@ -216,14 +179,14 @@ function setupPlayerThreadForm() {
 
     if (!form) return;
 
-    const savedUsername = localStorage.getItem("shinpad_username");
+    const savedUsername = getSavedUsername();
 
     if (savedUsername) {
         usernameInput.value = savedUsername;
     }
 
     usernameInput.addEventListener("input", () => {
-        localStorage.setItem("shinpad_username", usernameInput.value.trim());
+        saveUsername(usernameInput.value.trim());
     });
 
     form.addEventListener("submit", (event) => {
@@ -234,9 +197,9 @@ function setupPlayerThreadForm() {
 
         if (!text) return;
 
-        localStorage.setItem("shinpad_username", username);
+        saveUsername(username);
 
-        const posts = getPlayerPosts();
+        const posts = getPlayerPosts(playerId);
 
         posts.unshift({
             username,
@@ -248,7 +211,7 @@ function setupPlayerThreadForm() {
             })
         });
 
-        savePlayerPosts(posts);
+        savePlayerPosts(playerId, posts);
         textInput.value = "";
         renderPlayerPosts();
     });
@@ -257,7 +220,7 @@ function setupPlayerThreadForm() {
 }
 
 function lavPlayerThreadSektion(playerName) {
-    const antalPosts = getPlayerPosts().length;
+    const antalPosts = getPlayerPosts(playerId).length;
 
     return `
         <section class="player-section player-thread-section">

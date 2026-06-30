@@ -3,68 +3,10 @@ const matchPage = document.getElementById("matchPage");
 const params = new URLSearchParams(window.location.search);
 const matchId = Number(params.get("id"));
 
-function oversaetStatus(status) {
-    if (status === "FINISHED") return "Full time";
-    if (status === "IN_PLAY") return "Live";
-    if (status === "PAUSED") return "Half time";
-    if (status === "TIMED" || status === "SCHEDULED") return "Upcoming";
-    return status || "Unknown";
-}
-
-function formatDato(dato) {
-    return new Date(dato).toLocaleString("da-DK", {
-        weekday: "long",
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-    });
-}
-
-function getScore(match) {
-    const home = match.score?.fullTime?.home;
-    const away = match.score?.fullTime?.away;
-
-    if (home === null || home === undefined || away === null || away === undefined) {
-        return "vs";
-    }
-
-    return `${home} - ${away}`;
-}
-
-function safeValue(value, fallback = "Not available") {
-    if (value === null || value === undefined || value === "") {
-        return fallback;
-    }
-
-    return value;
-}
-
-function normalizeUsername(username) {
-    return username
-        .toLowerCase()
-        .trim()
-        .replaceAll(" ", "-")
-        .replace(/[^a-z0-9-]/g, "");
-}
-
-function getThreadKey() {
-    return `shinpad_match_thread_${matchId}`;
-}
-
-function hentKommentarer() {
-    const saved = localStorage.getItem(getThreadKey());
-    return saved ? JSON.parse(saved) : [];
-}
-
-function gemKommentarer(comments) {
-    localStorage.setItem(getThreadKey(), JSON.stringify(comments));
-}
 
 function renderKommentarer() {
     const commentsList = document.getElementById("commentsList");
-    const comments = hentKommentarer();
+    const comments = getMatchComments(matchId);
 
     if (!commentsList) return;
 
@@ -98,12 +40,12 @@ function renderKommentarer() {
 }
 
 function likeKommentar(index) {
-    const comments = hentKommentarer();
+    const comments = getMatchComments(matchId);
 
     if (!comments[index]) return;
 
     comments[index].likes += 1;
-    gemKommentarer(comments);
+    saveMatchComments(matchId, comments);
     renderKommentarer();
 }
 
@@ -114,14 +56,14 @@ function setupThreadForm() {
 
     if (!form) return;
 
-    const savedUsername = localStorage.getItem("shinpad_username");
+    const savedUsername = getSavedUsername();
 
     if (savedUsername) {
         usernameInput.value = savedUsername;
     }
 
     usernameInput.addEventListener("input", () => {
-        localStorage.setItem("shinpad_username", usernameInput.value.trim());
+        saveUsername(usernameInput.value.trim());
     });
 
     form.addEventListener("submit", (event) => {
@@ -132,9 +74,9 @@ function setupThreadForm() {
 
         if (!text) return;
 
-        localStorage.setItem("shinpad_username", username);
+        saveUsername(username);
 
-        const comments = hentKommentarer();
+        const comments = getMatchComments(matchId);
 
         comments.unshift({
             username,
@@ -146,7 +88,7 @@ function setupThreadForm() {
             })
         });
 
-        gemKommentarer(comments);
+        saveMatchComments(matchId, comments);
         textInput.value = "";
         renderKommentarer();
     });
@@ -161,8 +103,7 @@ async function hentKamp() {
     }
 
     try {
-        const response = await fetch("/api/matches");
-        const data = await response.json();
+        const data = await getAllMatches();
 
         const match = data.matches.find(kamp => kamp.id === matchId);
 
@@ -175,7 +116,7 @@ async function hentKamp() {
             <section class="match-hero premium-match-hero">
                 <div class="match-top-info">
                     <span>${safeValue(match.competition?.name)}</span>
-                    <span>${formatDato(match.utcDate)}</span>
+                    <span>${formatLangDato(match.utcDate)}</span>
                     <span class="live-pill">${oversaetStatus(match.status)}</span>
                 </div>
 

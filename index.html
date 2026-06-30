@@ -22,13 +22,24 @@
         </a>
 
         <nav class="main-nav">
+            <a class="active" href="index.html">Home</a>
             <a href="kampe.html">Matches</a>
             <a href="stillinger.html">Leagues</a>
-            <a href="transfers.html">Transfers</a>
-            <a href="#">Threads</a>
+            <a href="transfers.html">News</a>
+            <a href="following.html">Following</a>
+            <a href="settings.html">Settings</a>
         </nav>
 
-        <a class="login-btn" href="#">Login</a>
+        <div class="nav-actions">
+
+            <div class="notification-button">
+                🔔
+                <div class="notification-dot"></div>
+            </div>
+
+            <a class="login-btn" href="settings.html">Profile</a>
+
+        </div>
     </header>
 
     <main class="home-shell">
@@ -154,7 +165,12 @@
             </div>
         </section>
     </main>
-
+    <script src="nav.js"></script>
+    <script src="notifications.js"></script>
+    <script src="utils.js"></script>
+    <script src="config.js"></script>
+    <script src="storage.js"></script>
+    <script src="api.js"></script>
     <script src="home.js"></script>
 </body>
 

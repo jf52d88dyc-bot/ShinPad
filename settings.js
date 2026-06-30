@@ -11,7 +11,7 @@ const saveButton = document.getElementById("saveSettingsButton");
 const message = document.getElementById("settingsMessage");
 
 function loadSettings() {
-    const settings = JSON.parse(localStorage.getItem("shinpad_settings")) || {};
+    const settings = getSettings();
 
     usernameInput.value = settings.username || "";
     bioInput.value = settings.bio || "";
@@ -38,16 +38,10 @@ function saveSettings() {
         notifyThreads: notifyThreads.checked
     };
 
-    localStorage.setItem(
-        "shinpad_settings",
-        JSON.stringify(settings)
-    );
+    saveSettingsData(settings);
 
     if (settings.username) {
-        localStorage.setItem(
-            "shinpad_username",
-            settings.username
-        );
+        saveUsername(settings.username);
     }
 
     message.textContent = "✅ Settings saved successfully!";

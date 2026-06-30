@@ -3,52 +3,6 @@ const teamPage = document.getElementById("teamPage");
 const params = new URLSearchParams(window.location.search);
 const teamId = params.get("id");
 
-function oversaetStatus(status) {
-    if (status === "FINISHED") return "Full time";
-    if (status === "IN_PLAY") return "Live";
-    if (status === "PAUSED") return "Half time";
-    if (status === "TIMED" || status === "SCHEDULED") return "Upcoming";
-    return status || "Unknown";
-}
-
-function formatDato(dato) {
-    return new Date(dato).toLocaleString("da-DK", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-    });
-}
-
-function getScore(match) {
-    const home = match.score?.fullTime?.home;
-    const away = match.score?.fullTime?.away;
-    if (home === null || home === undefined || away === null || away === undefined) return "vs";
-    return `${home} - ${away}`;
-}
-
-function safeValue(value, fallback = "Not available") {
-    if (value === null || value === undefined || value === "") return fallback;
-    return value;
-}
-
-function normalizeUsername(username) {
-    return username
-        .toLowerCase()
-        .trim()
-        .replaceAll(" ", "-")
-        .replace(/[^a-z0-9-]/g, "");
-}
-
-function getFavoriteTeams() {
-    const saved = localStorage.getItem("shinpad_favorite_teams");
-    return saved ? JSON.parse(saved) : [];
-}
-
-function saveFavoriteTeams(teams) {
-    localStorage.setItem("shinpad_favorite_teams", JSON.stringify(teams));
-}
 
 function isFavoriteTeam(id) {
     return getFavoriteTeams().some(team => String(team.id) === String(id));
@@ -67,24 +21,11 @@ function toggleFavoriteTeam(id, name, crest) {
     hentHold();
 }
 
-function getClubThreadKey() {
-    return `shinpad_club_thread_${teamId}`;
-}
-
-function hentClubPosts() {
-    const saved = localStorage.getItem(getClubThreadKey());
-    return saved ? JSON.parse(saved) : [];
-}
-
-function gemClubPosts(posts) {
-    localStorage.setItem(getClubThreadKey(), JSON.stringify(posts));
-}
-
 function renderClubPosts() {
     const clubPostsList = document.getElementById("clubPostsList");
     if (!clubPostsList) return;
 
-    const posts = hentClubPosts();
+    const posts = getClubPosts(teamId);
 
     if (posts.length === 0) {
         clubPostsList.innerHTML = `
@@ -116,12 +57,12 @@ function renderClubPosts() {
 }
 
 function likeClubPost(index) {
-    const posts = hentClubPosts();
+    const posts = getClubPosts(teamId);
 
     if (!posts[index]) return;
 
     posts[index].likes += 1;
-    gemClubPosts(posts);
+    saveClubPosts(teamId, posts);
     renderClubPosts();
 }
 
@@ -132,14 +73,14 @@ function setupClubThreadForm() {
 
     if (!form) return;
 
-    const savedUsername = localStorage.getItem("shinpad_username");
+    const savedUsername = getSavedUsername();
 
     if (savedUsername) {
         usernameInput.value = savedUsername;
     }
 
     usernameInput.addEventListener("input", () => {
-        localStorage.setItem("shinpad_username", usernameInput.value.trim());
+        saveUsername(usernameInput.value.trim());
     });
 
     form.addEventListener("submit", (event) => {
@@ -150,9 +91,9 @@ function setupClubThreadForm() {
 
         if (!text) return;
 
-        localStorage.setItem("shinpad_username", username);
+        saveUsername(username);
 
-        const posts = hentClubPosts();
+        const posts = getClubPosts(teamId);
 
         posts.unshift({
             username,
@@ -164,7 +105,7 @@ function setupClubThreadForm() {
             })
         });
 
-        gemClubPosts(posts);
+        saveClubPosts(teamId, posts);
         textInput.value = "";
         renderClubPosts();
     });
@@ -294,14 +235,11 @@ function lavNewsSektion(news, teamName) {
 }
 
 function lavClubThreadSektion(teamName) {
-
-    const antalPosts = hentClubPosts().length;
+    const antalPosts = getClubPosts(teamId).length;
 
     return `
         <section class="team-matches-section club-thread-section">
-
             <div class="club-thread-title">
-
                 <div>
                     <p class="section-kicker">Social layer</p>
                     <h2>${teamName} Thread</h2>
@@ -310,16 +248,10 @@ function lavClubThreadSektion(teamName) {
                 <span class="club-thread-counter">
                     ${antalPosts} ${antalPosts === 1 ? "post" : "posts"}
                 </span>
-
             </div>
 
             <form id="clubPostForm" class="club-post-form">
-
-                <input
-                    id="clubPostUsername"
-                    type="text"
-                    placeholder="Username"
-                >
+                <input id="clubPostUsername" type="text" placeholder="Username">
 
                 <textarea
                     id="clubPostText"
@@ -327,17 +259,10 @@ function lavClubThreadSektion(teamName) {
                     placeholder="Share your take about ${teamName}..."
                 ></textarea>
 
-                <button type="submit">
-                    Post
-                </button>
-
+                <button type="submit">Post</button>
             </form>
 
-            <div
-                id="clubPostsList"
-                class="club-posts-list">
-            </div>
-
+            <div id="clubPostsList" class="club-posts-list"></div>
         </section>
     `;
 }
@@ -351,22 +276,16 @@ async function hentHold() {
     teamPage.innerHTML = "<p class='loading'>Loading team...</p>";
 
     try {
-        const teamResponse = await fetch(`/api/team/${teamId}`);
-        const team = await teamResponse.json();
+        const team = await getTeam(teamId);
+        const matches = await getTeamMatches(teamId);
 
-        const matchesResponse = await fetch(`/api/team/${teamId}/matches`);
-        const matches = await matchesResponse.json();
-
-        const squadResponse = await fetch(`/api/team/${teamId}/squad`);
-        const squadData = await squadResponse.json();
+        const squadData = await getTeamSquad(teamId);
         const squad = squadData.squad || [];
 
-        const newsResponse = await fetch(`/api/news?q=${encodeURIComponent(team.name)}`);
-        let teamNews = await newsResponse.json();
+        let teamNews = await getNews(team.name);
 
         if (teamNews.length === 0 && team.shortName) {
-            const shortNewsResponse = await fetch(`/api/news?q=${encodeURIComponent(team.shortName)}`);
-            teamNews = await shortNewsResponse.json();
+            teamNews = await getNews(team.shortName);
         }
 
         const finishedMatches = matches
@@ -382,7 +301,7 @@ async function hentHold() {
         teamPage.innerHTML = `
             <section class="team-hero-modern">
                 <div class="team-logo-box">
-                    <img src="${team.crest}" alt="${team.name}">
+                    ${team.crest ? `<img src="${team.crest}" alt="${team.name}">` : `<div class="player-avatar">S</div>`}
                 </div>
 
                 <div class="team-hero-info">
@@ -396,7 +315,7 @@ async function hentHold() {
                         <span>${team.points !== null && team.points !== undefined ? team.points + " points" : "Points not available"}</span>
                     </div>
 
-                    <button class="follow-club-button ${favorite ? "following-club" : ""}" onclick="toggleFavoriteTeam('${team.id}', '${team.name.replaceAll("'", "\\'")}', '${team.crest}')">
+                    <button class="follow-club-button ${favorite ? "following-club" : ""}" onclick="toggleFavoriteTeam('${team.id}', '${safeValue(team.name, "Unknown club").replaceAll("'", "\\'")}', '${team.crest || ""}')">
                         ${favorite ? "Following club" : "Follow club"}
                     </button>
                 </div>

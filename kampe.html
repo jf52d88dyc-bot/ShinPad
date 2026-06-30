@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Matches | ShinPad</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="matches.css">
 </head>
@@ -21,13 +22,18 @@
 
         <nav class="main-nav">
             <a href="index.html">Home</a>
-            <a href="kampe.html">Matches</a>
+            <a class="active" href="kampe.html">Matches</a>
             <a href="stillinger.html">Leagues</a>
-            <a href="transfers.html">Transfers</a>
+            <a href="transfers.html">News</a>
+            <a href="following.html">Following</a>
+            <a href="settings.html">Settings</a>
         </nav>
+
+        <a class="login-btn" href="settings.html">Profile</a>
     </header>
 
     <main class="matches-page">
+
         <section class="page-intro">
             <p class="section-kicker">Live centre</p>
             <h1>All matches</h1>
@@ -37,8 +43,10 @@
         <div id="live-kampe">
             <p class="loading">Indlæser kampe...</p>
         </div>
-    </main>
 
+    </main>
+    <script src="nav.js"></script>
+    <script src="notifications.js"></script>
     <script src="script.js"></script>
 
 </body>

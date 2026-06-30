@@ -98,8 +98,7 @@ async function hentForsideNews() {
     try {
         const favoriteClubs = getFavoriteTeams().map(team => team.name.toLowerCase());
 
-        const response = await fetch("/api/news");
-        const news = await response.json();
+        const news = await getNews();
 
         if (!Array.isArray(news)) {
             renderHomeNews([]);
@@ -183,8 +182,7 @@ function lavKampKort(match) {
 
 async function hentForsideKampe() {
     try {
-        const response = await fetch("/api/home-matches");
-        const data = await response.json();
+        const data = await getHomeMatches();
 
         const liveMatches = data.live || [];
         const upcomingMatches = data.upcoming || [];
@@ -230,8 +228,7 @@ if (teamSearch && searchResults) {
 
 async function hentSogeResultater(query) {
     try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-        const results = await response.json();
+        const results = await searchShinPad(query);
 
         if (!results || results.length === 0) {
             searchResults.innerHTML = `<div class="search-empty">Ingen resultater fundet.</div>`;

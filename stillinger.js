@@ -7,8 +7,7 @@ async function hentStilling(leagueCode = "PD") {
     standingsBox.innerHTML = "";
 
     try {
-        const response = await fetch(`/api/standings?league=${leagueCode}`);
-        const data = await response.json();
+        const data = await getStandings(leagueCode);
 
         if (!data.standings || !data.standings[0]) {
             standingsInfo.textContent = "Kunne ikke finde stilling.";
